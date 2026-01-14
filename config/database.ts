@@ -6,8 +6,8 @@ export default ({ env }) => {
   const connections = {
     postgres: {
       connection: {
-        connectionString: env('DATABASE_URL'), // используем полный URL
-        ssl: env.bool('DATABASE_SSL', true) ? { rejectUnauthorized: true } : false, // включаем доверенный SSL
+        connectionString: env('DATABASE_URL'),
+        ssl: env.bool('DATABASE_SSL', true) ? { rejectUnauthorized: true } : false,
         schema: env('DATABASE_SCHEMA', 'public'),
       },
       pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
