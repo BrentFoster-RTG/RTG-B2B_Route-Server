@@ -13,7 +13,8 @@ export default ({ env }) => ({
   secrets: {
     encryptionKey: env('ENCRYPTION_KEY'),
   },
-  url: env('STRAPI_ADMIN_BACKEND_URL'),
+  url: env('ADMIN_URL', '/admin'),
+
   flags: {
     nps: env.bool('FLAG_NPS', true),
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
