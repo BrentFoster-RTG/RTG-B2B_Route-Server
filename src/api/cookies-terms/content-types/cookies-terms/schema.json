@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cookies",
+  "info": {
+    "singularName": "cookies-terms",
+    "pluralName": "cookies",
+    "displayName": "Cookies_Terms"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "cookies_terms"
+    }
+  }
+}

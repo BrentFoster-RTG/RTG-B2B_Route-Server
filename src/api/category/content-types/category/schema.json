@@ -16,6 +16,30 @@
     },
     "text": {
       "type": "string"
+    },
+    "resources": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::resource.resource",
+      "mappedBy": "category"
+    },
+    "partnerships": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::partnership.partnership",
+      "mappedBy": "category"
+    },
+    "blogposts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::blogpost.blogpost",
+      "mappedBy": "categories"
+    },
+    "cookies_terms": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::cookies-terms.cookies-terms",
+      "mappedBy": "category"
     }
   }
 }

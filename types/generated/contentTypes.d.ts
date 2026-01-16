@@ -430,6 +430,51 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBlogpostBlogpost extends Struct.CollectionTypeSchema {
+  collectionName: 'blogposts';
+  info: {
+    displayName: 'blogpost';
+    pluralName: 'blogposts';
+    singularName: 'blogpost';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    additionalImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    callToAction: Schema.Attribute.Blocks;
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::blogpost.blogpost'
+    > &
+      Schema.Attribute.Private;
+    longDescription: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    shortDescription: Schema.Attribute.Text;
+    stats: Schema.Attribute.Component<'relation.shared-stat', true>;
+    subheading: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -441,6 +486,14 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    blogposts: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::blogpost.blogpost'
+    >;
+    cookies_terms: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cookies-terms.cookies-terms'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -450,9 +503,117 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       'api::category.category'
     > &
       Schema.Attribute.Private;
+    partnerships: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::partnership.partnership'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    resources: Schema.Attribute.Relation<'oneToMany', 'api::resource.resource'>;
     slug: Schema.Attribute.UID;
     text: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCookiesTermsCookiesTerms
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'cookies';
+  info: {
+    displayName: 'Cookies_Terms';
+    pluralName: 'cookies';
+    singularName: 'cookies-terms';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    heading: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cookies-terms.cookies-terms'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPartnershipPartnership extends Struct.CollectionTypeSchema {
+  collectionName: 'partnerships';
+  info: {
+    displayName: 'Partnership';
+    pluralName: 'partnerships';
+    singularName: 'partnership';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    additionalImg: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    heading: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::partnership.partnership'
+    > &
+      Schema.Attribute.Private;
+    LongDescription: Schema.Attribute.Text;
+    mainImage: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    publishedAt: Schema.Attribute.DateTime;
+    shortDescription: Schema.Attribute.Text;
+    stats: Schema.Attribute.Component<'relation.shared-stat', true>;
+    subheading: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiResourceResource extends Struct.CollectionTypeSchema {
+  collectionName: 'resources';
+  info: {
+    displayName: 'Resource';
+    pluralName: 'resources';
+    singularName: 'resource';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    file: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    heading: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::resource.resource'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    shortDescription: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1007,7 +1168,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::blogpost.blogpost': ApiBlogpostBlogpost;
       'api::category.category': ApiCategoryCategory;
+      'api::cookies-terms.cookies-terms': ApiCookiesTermsCookiesTerms;
+      'api::partnership.partnership': ApiPartnershipPartnership;
+      'api::resource.resource': ApiResourceResource;
       'api::soulution.soulution': ApiSoulutionSoulution;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

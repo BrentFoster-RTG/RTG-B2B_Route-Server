@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "partnerships",
+  "info": {
+    "singularName": "partnership",
+    "pluralName": "partnerships",
+    "displayName": "Partnership"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "partnerships"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "subheading": {
+      "type": "text"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "additionalImg": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "LongDescription": {
+      "type": "text"
+    },
+    "stats": {
+      "type": "component",
+      "component": "relation.shared-stat",
+      "repeatable": true
+    }
+  }
+}
