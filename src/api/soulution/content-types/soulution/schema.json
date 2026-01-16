@@ -23,6 +23,32 @@
     },
     "heading": {
       "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "corporate",
+        "educators"
+      ]
+    },
+    "subheading": {
+      "type": "text"
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "longDescription": {
+      "type": "text"
+    },
+    "mainValue": {
+      "type": "component",
+      "component": "relation.shared-main-value",
+      "repeatable": true
+    },
+    "stats": {
+      "type": "component",
+      "component": "relation.shared-stat",
+      "repeatable": true
     }
   }
 }

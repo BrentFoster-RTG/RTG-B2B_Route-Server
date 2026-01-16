@@ -430,6 +430,35 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
+  collectionName: 'categories';
+  info: {
+    displayName: 'category';
+    pluralName: 'categories';
+    singularName: 'category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID;
+    text: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSoulutionSoulution extends Struct.CollectionTypeSchema {
   collectionName: 'soulutions';
   info: {
@@ -455,7 +484,13 @@ export interface ApiSoulutionSoulution extends Struct.CollectionTypeSchema {
       'api::soulution.soulution'
     > &
       Schema.Attribute.Private;
+    longDescription: Schema.Attribute.Text;
+    mainValue: Schema.Attribute.Component<'relation.shared-main-value', true>;
     publishedAt: Schema.Attribute.DateTime;
+    shortDescription: Schema.Attribute.Text;
+    stats: Schema.Attribute.Component<'relation.shared-stat', true>;
+    subheading: Schema.Attribute.Text;
+    type: Schema.Attribute.Enumeration<['corporate', 'educators']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -972,6 +1007,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::category.category': ApiCategoryCategory;
       'api::soulution.soulution': ApiSoulutionSoulution;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

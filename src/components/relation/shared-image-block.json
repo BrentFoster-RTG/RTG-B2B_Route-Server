@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_relation_shared_image_blocks",
+  "info": {
+    "displayName": "shared.image-block"
+  },
+  "options": {},
+  "attributes": {
+    "img": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "alt": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
