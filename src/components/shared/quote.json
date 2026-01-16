@@ -12,5 +12,6 @@
     "body": {
       "type": "text"
     }
-  }
+  },
+  "__filename__": "quote.json"
 }

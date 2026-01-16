@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "soulutions",
+  "info": {
+    "singularName": "soulution",
+    "pluralName": "soulutions",
+    "displayName": "soulution"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "heading": {
+      "type": "string"
+    }
+  }
+}

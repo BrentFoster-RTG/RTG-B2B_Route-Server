@@ -10,5 +10,6 @@
     "body": {
       "type": "richtext"
     }
-  }
+  },
+  "__filename__": "rich-text.json"
 }

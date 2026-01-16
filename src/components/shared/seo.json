@@ -20,7 +20,10 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     }
-  }
+  },
+  "__filename__": "seo.json"
 }
